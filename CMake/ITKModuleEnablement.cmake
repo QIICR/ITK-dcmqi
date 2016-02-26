@@ -39,6 +39,10 @@ unset(itk-module-test)
 
 # Validate the module DAG.
 macro(itk_module_check itk-module _needed_by stack)
+  message("Checking ${itk-module}")
+  if(NOT ${_needed_by}_ENABLED)
+    message("${_needed_by} is not needed")
+  endif()
   if(NOT ITK_MODULE_${itk-module}_DECLARED)
     message(FATAL_ERROR "No such module \"${itk-module}\" needed by \"${_needed_by}\"")
   endif()
