@@ -16,9 +16,9 @@ platform:
 before_build:
   - cmd: cmake --version
   - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/fedorov/zlib/releases/download/zlib-dcmqi-1.2.3-VS12-Win64-Release/zlib-dcmqi.zip", "C:\zlib-dcmqi.zip")
-  - cmd: 7a x C:\zlib-dcmqi.zip -oC:\zlib-build
+  - cmd: 7z x C:\zlib-dcmqi.zip -oC:\zlib-build
   - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/fedorov/DCMTK/releases/download/DCMTK-dcmqi-3.6.1_20160216-VS12-Win64-Release/DCMTK-dcmqi.zip", "C:\DCMTK-dcmqi.zip")
-  - cmd: 7a x C:\DCMTK-dcmqi.zip -oC:\DCMTK-build
+  - cmd: 7z x C:\DCMTK-dcmqi.zip -oC:\DCMTK-build
   - cmd: mkdir c:\ITK\ITK-build
   - cmd: cd c:\ITK\ITK-build
   - cmd: cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE:STRING=Release -DZLIB_ROOT:STRING=C:\zlib-build -DDCMTK_DIR:STRING=C:\DCMTK-build C:\ITK
