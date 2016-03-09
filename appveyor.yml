@@ -22,26 +22,7 @@ before_build:
   - cmd: 7z x C:\DCMTK-dcmqi.zip -oC:\DCMTK-build
   - cmd: mkdir c:\ITK\ITK-build
   - cmd: cd c:\ITK\ITK-build
-  - cmd: >-
-          cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE:STRING=Release 
-          -DITK_USE_SYSTEM_ZLIB:BOOL=ON 
-          -DZLIB_ROOT:PATH=c:\zlib-install 
-          -DZLIB_INCLUDE_DIR:PATH=c:\zlib-install\include 
-          -DZLIB_LIBRARY:FILEPATH=c:\zlib-install\lib 
-          -DZLIB_ROOT:STRING=C:\zlib-build 
-          -DITK_USE_SYSTEM_DCMTK:BOOL=ON 
-          -DDCMTK_DIR:STRING=C:\DCMTK-build 
-          -DBUILD_TESTING:BOOL=OFF 
-          -DBUILD_EXAMPLES:BOOL=OFF 
-          -DITK_LEGACY_REMOVE:BOOL=OFF 
-          -DITKV3_COMPATIBILITY:BOOL=OFF 
-          -DModule_MGHIO:BOOL=OFF 
-          -DBUILD_SHARED_LIBS:BOOL=ON 
-          -DITK_INSTALL_NO_DEVELOPMENT:BOOL=ON 
-          -DKWSYS_USE_MD5:BOOL=ON # Required by SlicerExecutionModel 
-          -DITK_WRAPPING:BOOL=OFF #${BUILD_SHARED_LIBS} ## HACK:  QUICK CHANGE
-          -DITK_WRAP_PYTHON:BOOL=OFF
-          C:\ITK
+  - cmd: cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE:STRING=Release -DITK_USE_SYSTEM_ZLIB:BOOL=ON -DZLIB_ROOT:PATH=c:\zlib-install -DZLIB_INCLUDE_DIR:PATH=c:\zlib-install\include -DZLIB_LIBRARY:FILEPATH=c:\zlib-install\lib -DZLIB_ROOT:STRING=C:\zlib-build -DITK_USE_SYSTEM_DCMTK:BOOL=ON -DDCMTK_DIR:STRING=C:\DCMTK-build -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF -DITK_LEGACY_REMOVE:BOOL=OFF -DITKV3_COMPATIBILITY:BOOL=OFF -DModule_MGHIO:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DITK_INSTALL_NO_DEVELOPMENT:BOOL=ON -DKWSYS_USE_MD5:BOOL=ON -DITK_WRAPPING:BOOL=OFF -DITK_WRAP_PYTHON:BOOL=OFF C:\ITK
 build_script:
   - cmd: type ITK.sln
   - cmd: msbuild ITK.sln /m
