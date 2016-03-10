@@ -1,0 +1,44 @@
+version: 0.0.{build}
+os:
+  - Visual Studio 2013
+clone_depth: 1
+branches:
+  only:
+    - dcmqi
+skip_tags: true
+clone_folder: c:\ITK
+install:
+  - cinst cmake
+configuration:
+  - Release
+platform:
+  - x64
+before_build:
+  - cmd: cmake --version
+  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/fedorov/zlib/releases/download/zlib-dcmqi-1.2.3-VS12-Win64-Release/zlib-dcmqi.zip", "C:\zlib-dcmqi.zip")
+  - cmd: 7z x C:\zlib-dcmqi.zip -oC:\zlib-install
+  - cmd: dir c:\zlib-install
+  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/fedorov/DCMTK/releases/download/DCMTK-dcmqi-3.6.1_20160216-VS12-Win64-Release-v0.0.8/DCMTK-dcmqi.zip", "C:\DCMTK-dcmqi.zip")
+  - cmd: 7z x C:\DCMTK-dcmqi.zip -oC:\DCMTK-install
+  - cmd: dir c:\DCMTK-install
+  - cmd: mkdir c:\ITK\ITK-build
+  - cmd: cd c:\ITK\ITK-build
+  - cmd: cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE:STRING=Release -DITK_USE_SYSTEM_ZLIB:BOOL=ON -DZLIB_ROOT:PATH=c:\zlib-install -DZLIB_INCLUDE_DIR:PATH=c:\zlib-install\include -DZLIB_LIBRARY:FILEPATH=c:\zlib-install\lib\zlib.lib -DDCMTK_DIR:STRING=C:\DCMTK-install\cmake -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF -DITK_LEGACY_REMOVE:BOOL=OFF -DITKV3_COMPATIBILITY:BOOL=OFF -DModule_MGHIO:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DITK_INSTALL_NO_DEVELOPMENT:BOOL=ON -DKWSYS_USE_MD5:BOOL=ON -DITK_WRAPPING:BOOL=OFF -DITK_WRAP_PYTHON:BOOL=OFF -DCMAKE_INSTALL_PREFIX=c:\ITK\ITK-install C:\ITK
+build_script:
+  - cmd: type ITK.sln
+  - cmd: msbuild ITK.sln /m
+  - cmd: msbuild INSTALL.vcxproj /m
+cache:
+  - C:\ProgramData\chocolatey\bin
+  - C:\ProgramData\chocolatey\lib
+artifacts:
+  - path: ITK-install
+    name: ITK-dcmqi
+    type: zip
+deploy:
+    release: ITK-dcmqi-VS12-Win64-Release-v$(appveyor_build_version)
+    provider: GitHub
+    description: 'ITK packaged by appveyor for dcmqi'
+    artifact: ITK-dcmqi
+    auth_token:
+      secure: ffHRHxe8buygkDl6kRw4vaNaH/ikYGoDn3TXfZ42cFXq7986houCT7/7qB8o5Vvf
