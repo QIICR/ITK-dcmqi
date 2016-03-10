@@ -28,6 +28,7 @@ build_script:
   - cmd: type ITK.sln
   - cmd: msbuild ITK.sln /m
   - cmd: msbuild INSTALL.vcxproj /m
+  - cmd: COPY C:\ITK\Modules\ThirdParty\Expat\src\expat\itk_expat_mangle.h C:\ITK\ITK-install\include\ITK-4.10\itk_expat_mangle.h
 cache:
   - C:\ProgramData\chocolatey\bin
   - C:\ProgramData\chocolatey\lib
