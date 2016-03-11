@@ -27,12 +27,12 @@ before_build:
 build_script:
   - cmd: type ITK.sln
   - cmd: msbuild ITK.sln /m
-  - cmd: msbuild INSTALL.vcxproj /m
+  - cmd: xcopy /E c:\ITK c:\ITK\ITK-copy
 cache:
   - C:\ProgramData\chocolatey\bin
   - C:\ProgramData\chocolatey\lib
 artifacts:
-  - path: ITK-install
+  - path: ITK-copy
     name: ITK-dcmqi
     type: zip
 deploy:
