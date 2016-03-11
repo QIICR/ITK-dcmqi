@@ -27,8 +27,8 @@ before_build:
 build_script:
   - cmd: type ITK.sln
   - cmd: msbuild ITK.sln /m
-  - cmd: echo D | xcopy /E c:\ITK c:\ITK-copy
-  - cmd: echo D | xcopy /E c:\ITK-copy c:\ITK
+  - ps: Copy-Item c:\ITK -Destination c:\ITK-copy -Recurse
+  - ps: Copy-Item c:\ITK-copy -Destination c:\ITK -Recurse
 cache:
   - C:\ProgramData\chocolatey\bin
   - C:\ProgramData\chocolatey\lib
