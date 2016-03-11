@@ -27,7 +27,8 @@ before_build:
 build_script:
   - cmd: type ITK.sln
   - cmd: msbuild ITK.sln /m
-  - cmd: xcopy /E c:\ITK c:\ITK\ITK-copy
+  - cmd: xcopy /E c:\ITK c:\ITK-copy
+  - cmd: xcopy /E c:\ITK-copy c:\ITK
 cache:
   - C:\ProgramData\chocolatey\bin
   - C:\ProgramData\chocolatey\lib
