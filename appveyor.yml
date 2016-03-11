@@ -29,7 +29,7 @@ build_script:
   - cmd: type ITK.sln
   - cmd: msbuild ITK.sln /m
   - cmd: msbuild INSTALL.vcxproj
-  - ps: CopyItem c:\ITK-install -Destination c:\ITK\ITK-install -Recurse
+  - ps: Copy-Item c:\ITK-install -Destination c:\ITK\ITK-install -Recurse
 cache:
   - C:\ProgramData\chocolatey\bin
   - C:\ProgramData\chocolatey\lib
