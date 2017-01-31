@@ -7,18 +7,16 @@ branches:
     - dcmqi
 skip_tags: true
 clone_folder: c:\ITK
-install:
-  - cinst cmake
 configuration:
   - Release
 platform:
   - x64
 before_build:
   - cmd: cmake --version
-  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/fedorov/zlib/releases/download/zlib-dcmqi-1.2.3-VS12-Win64-Release/zlib-dcmqi.zip", "C:\zlib-dcmqi.zip")
+  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/qiicr/zlib-dcmqi/releases/download/zlib-dcmqi-1.2.3-VS12-Win64-Release-static/zlib-dcmqi.zip", "C:\zlib-dcmqi.zip")
   - cmd: 7z x C:\zlib-dcmqi.zip -oC:\zlib-install
   - cmd: dir c:\zlib-install
-  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/fedorov/DCMTK/releases/download/DCMTK-dcmqi-3.6.1_20160216-VS12-Win64-Release-v0.0.8/DCMTK-dcmqi.zip", "C:\DCMTK-dcmqi.zip")
+  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/qiicr/dcmtk-dcmqi/releases/download/DCMTK-dcmqi-3.6.1_20161102-VS12-Win64-Release-v0.0.11-static/DCMTK-dcmqi.zip", "C:\DCMTK-dcmqi.zip")
   - cmd: 7z x C:\DCMTK-dcmqi.zip -oC:\DCMTK-install
   - cmd: dir c:\DCMTK-install
   - cmd: mkdir c:\ITK\ITK-build
