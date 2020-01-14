@@ -16,7 +16,7 @@ before_build:
   - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/qiicr/zlib-dcmqi/releases/download/zlib-dcmqi-1.2.3-VS12-Win64-Release-static/zlib-dcmqi.zip", "C:\zlib-dcmqi.zip")
   - cmd: 7z x C:\zlib-dcmqi.zip -oC:\zlib-install
   - cmd: dir c:\zlib-install
-  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/QIICR/dcmtk-dcmqi/releases/download/DCMTK-dcmqi-3.6.3_20180620-VS12-Win64-Release-v0.0.20-static/DCMTK-dcmqi.zip", "C:\DCMTK-dcmqi.zip")
+  - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/QIICR/dcmtk-dcmqi/releases/download/DCMTK-dcmqi-3.6.5_20200113-VS12-Win64-Release-v0.0.24-static/DCMTK-dcmqi.zip", "C:\DCMTK-dcmqi.zip")
   - cmd: 7z x C:\DCMTK-dcmqi.zip -oC:\DCMTK-install
   - cmd: dir c:\DCMTK-install
   - cmd: mkdir c:\ITK\ITK-build
@@ -36,9 +36,14 @@ artifacts:
     name: ITK-dcmqi
     type: zip
 deploy:
-    release: ITK-dcmqi-VS12-Win64-Release-v$(appveyor_build_version)-static
-    provider: GitHub
-    description: 'ITK packaged by appveyor for dcmqi'
-    artifact: ITK-dcmqi
-    auth_token:
-      secure: ffHRHxe8buygkDl6kRw4vaNaH/ikYGoDn3TXfZ42cFXq7986houCT7/7qB8o5Vvf
+  release: ITK-dcmqi-VS12-Win64-Release-v$(appveyor_build_version)-static
+  description: 'ITK packaged by appveyor for dcmqi'
+  provider: GitHub
+  auth_token:
+    secure: ffHRHxe8buygkDl6kRw4vaNaH/ikYGoDn3TXfZ42cFXq7986houCT7/7qB8o5Vvf
+  artifact: ITK-dcmqi
+  draft: false
+  prerelease: false
+  on:
+    branch: dcmqi
+    APPVEYOR_REPO_TAG: false
