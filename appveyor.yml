@@ -40,7 +40,7 @@ deploy:
   description: 'ITK packaged by appveyor for dcmqi'
   provider: GitHub
   auth_token:
-    secure: ffHRHxe8buygkDl6kRw4vaNaH/ikYGoDn3TXfZ42cFXq7986houCT7/7qB8o5Vvf
+    secure: mnRPU2KJBMkkUa4fo4ebLpsEG/gYpcAy4/X2ihGiwZiPGpkyvF1ItFFRSlUGubvf
   artifact: ITK-dcmqi
   draft: false
   prerelease: false
