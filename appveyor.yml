@@ -11,6 +11,13 @@ configuration:
   - Release
 platform:
   - x64
+environment:
+  PYTHON_DIR: "C:\\Python27-x64"
+  PATH: "%PYTHON_DIR%;%PYTHON_DIR%\\Scripts;%PATH%"
+  GITHUB_TOKEN:
+    secure: mnRPU2KJBMkkUa4fo4ebLpsEG/gYpcAy4/X2ihGiwZiPGpkyvF1ItFFRSlUGubvf
+  APPVEYOR_API_TOKEN:
+    secure: 3+wBc5SxNqx3XjsY3EZ7afvQbLAWWcw30SPGK7q+QPA=
 before_build:
   - cmd: cmake --version
   - ps: $client = new-object System.Net.WebClient;$client.DownloadFile("https://github.com/qiicr/zlib-dcmqi/releases/download/zlib-dcmqi-1.2.3-VS12-Win64-Release-static/zlib-dcmqi.zip", "C:\zlib-dcmqi.zip")
