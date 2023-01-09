@@ -48,7 +48,7 @@ deploy:
   description: 'ITK slicer-v5.3rc04-2022-09-19-62eb5ca'
   provider: GitHub
   auth_token:
-    secure: mnRPU2KJBMkkUa4fo4ebLpsEG/gYpcAy4/X2ihGiwZiPGpkyvF1ItFFRSlUGubvf
+    secure: ES/eqjQ0Yw+SY//wQdGB5zdHAqcAZDj75EzYjnvaibQa4LfjYaj4tWltthhvoiWe
   artifact: ITK-dcmqi
   draft: false
   prerelease: false
